@@ -19,3 +19,4 @@ def loop():
     chosenValley = getBestValley(valleys, north)
     phi = getRoute(chosenValley, north)
     move(SPINS, phi)
+    sorted(angles, reverse=True)
