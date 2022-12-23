@@ -1,4 +1,4 @@
-executionTime = T
+executionSpins = S
 def loop():
 	measurements = []
 	for i in range(len(angles)):
@@ -8,4 +8,4 @@ def loop():
 	valleys = getValleys(measurements)
 	chosenValley = getBestValley(valleys, north)
 	phi = getRoute(chosenValley, north)
-	move(T, phi)
+	move(executionSpins, phi)
