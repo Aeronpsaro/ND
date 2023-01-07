@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 minWidthCenter = 25 #Tamaño mínimo del robot para que el robot no tenga que ir por el centro
 securityDist = 5 #Distancia de seguridad que tiene que dejar el robot con respecto a los obstáculos
 

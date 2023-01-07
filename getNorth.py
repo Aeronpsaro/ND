@@ -1,7 +1,16 @@
-from ev3dev2.sensor.lego import CompassSensor 
+#!/usr/bin/env python3
 
-compass = CompassSensor(INPUT_3)
+#from ev3dev2.sensor.lego import CompassSensor 
+
+from ev3dev.ev3 import *
+from ev3dev2.sensor import Sensor
+
 
 def getNorth():
-    bearing = compass.bearing # Obtiene el valor del compás en grados
-    return bearing
+
+    seeker = Sensor(driver_name='ht-nxt-compass')
+    seeker.mode = 'COMPASS'
+    print(seeker.value(0))
+    # direction is 0 for no signal, or 1-9 for left-right direction
+    direction = seeker.value(0)
+    return direction

@@ -1,6 +1,9 @@
+#!/usr/bin/env python3
+
 INFINITY = 99999999999999999999999999999
 THRESHOLD = 10
 def getValleys(measurements):
+
     valleys = []
     inValley = False
     valleyBegin = (0, INFINITY)

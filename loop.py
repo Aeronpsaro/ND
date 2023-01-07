@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 from spinTo import spinTo
 from getDistance import getDistance
 from getNorth import getNorth
@@ -14,6 +16,7 @@ def loop():
     for angle in angles:
         measuredAngle = spinTo(angle)
         measurements.append((measuredAngle, getDistance()))
+
     north = getNorth()
     valleys = getValleys(measurements)
     chosenValley = getBestValley(valleys, north)

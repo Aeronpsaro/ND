@@ -1,4 +1,7 @@
+#!/usr/bin/env python3
+
 def getBestValley(valleys, north):
+    print(valleys)
     result = []
     dist_seguridad = 10
     for i in range(len(valleys)):
