@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
+import sys
 
 def getBestValley(valleys, north):
-    print(valleys)
+    
     result = []
     dist_seguridad = 10
     for i in range(len(valleys)):
@@ -12,4 +13,7 @@ def getBestValley(valleys, north):
             continue
         result.append((dif, i))
     result.sort(key = lambda x: x[0])
+    print(result, file=sys.stderr)
     return valleys[result[0][1]]
+
+

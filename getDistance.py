@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 
-from ev3dev2.auto import *
+from ev3dev2.sensor.lego import *
 
 #Función que devuelve la distancia medida por el sensor de ultrasonido
 
-us = UltrasonicSensor(INPUT_1)
-us.MODE_US_DIST_CM = 'US_DIST_CM'
-print(us.value())
+us = UltrasonicSensor()
+#us.mode = 'US_DIST_CM'
+
 def getDistance():
-    dist=us.value()
+    dist=us.distance_centimeters
     return dist
