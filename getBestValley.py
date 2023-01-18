@@ -5,15 +5,29 @@ def getBestValley(valleys, north):
     
     result = []
     dist_seguridad = 10
+    accurateAngle = 0
+
     for i in range(len(valleys)):
-        dif = valleys[i][1][0] - valleys[i][0][0]
-        if north > valleys[i][1][0] or north < valleys[i][0][0]:
+        
+        
+        if valleys[i][1][0] > 95:
+            accurateAngle = north + 90 - valleys[i][1][0]
+        elif valleys[i][0][0] < 95:
+            accurateAngle = north - 90 + valleys[i][0][0]
+        difAngle = abs(north - accurateAngle)
+        
+        if difAngle > north:
             continue
-        if dif <= dist_seguridad:
+        difDist = abs(valleys[i][1][1] - valleys[i][0][1])
+        if valleys[i][1][1]==0 and valleys[i][0][1]==0:
+            difDist = 255
+        if difDist <= dist_seguridad:
             continue
-        result.append((dif, i))
+        
+        result.append((difDist, i))
     result.sort(key = lambda x: x[0])
-    print(result, file=sys.stderr)
-    return valleys[result[0][1]]
+    print([valleys[result[0][1]]], file = sys.stderr)
+
+    return [valleys[result[0][1]]]
 
 

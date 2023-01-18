@@ -9,9 +9,9 @@ securityDist = 5 #Distancia de seguridad que tiene que dejar el robot con respec
 # - north: donde se encuentra el objetivo
 #------------------
 def getRoute(valley, north):
-    valleyWidth = valley[1][0] - valley[0][0]
+    valleyWidth = valley[0][1][0] - valley[0][0][0]
     #Si el norte está dentro del valle
-    if (north < valley[1][0] and north > valley[0][0]):
+    if (north < valley[0][1][0] and north > valley[0][0][0]):
         return north
     else:
         #Comprobamos que si el ancho no es suficiente, el robot tiene que ir
@@ -21,7 +21,7 @@ def getRoute(valley, north):
             
         else:
             #Comprobamos de que lado del valle está más cerca north
-            if (abs(north - valley[0][0]) < abs(north - valley[1][0])):
-                return valley[0][0] + securityDist
+            if (abs(north - valley[0][0][0]) < abs(north - valley[0][1][0])):
+                return valley[0][0][0] + securityDist
             else:
-                return valley[1][0] + securityDist
+                return valley[0][1][0] + securityDist
