@@ -13,25 +13,28 @@ import sys
 from ev3dev2.sensor.lego import TouchSensor
 
 ts = TouchSensor()
-
 MEASURE_WIDTH = 10
-
 SPINS = 1
+angles = list(range(0,181,MEASURE_WIDTH))
 
-def loop():
-    angles = list(range(0,181,MEASURE_WIDTH))
-       
-    currentAngle = 0
+
+def loop(currentAngle):
+
+    reverse = angles[0] > 90
+
     measurements = []
-    angles.append(0)
+    #angles.append(0)
 
     ts.on_press = lambda: sys.exit()
-        
 
     for angle in angles:
-    # print(currentAngle, file=sys.stderr)
+        #print(currentAngle, file=sys.stderr)
+        #currentAngle = spinTo(90)
         currentAngle = spinTo(angle - currentAngle)
-        measurements.append((currentAngle, getDistance()))
+        measurements.append((currentAngle - 90, getDistance()))
+
+    if reverse:
+        measurements.reverse()
     
     print("RODOLFIN", file=sys.stderr)
     #time.sleep(3)
@@ -40,6 +43,17 @@ def loop():
     
     valleys = getValleys(measurements)
     chosenValley = getBestValley(valleys, north)
-    phi = getRoute(chosenValley, north)
-    move(SPINS, phi)
-    sorted(angles, reverse=True)
+    if not chosenValley:
+        if(abs(north - 90) < abs(north + 90)):
+            phi = 90
+        else:
+            phi = -90
+
+        move(0, phi)
+    else:
+        phi = getRoute(chosenValley, north)
+        move(SPINS, phi)
+        
+    angles.reverse()
+    return currentAngle
+    

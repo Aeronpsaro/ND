@@ -11,7 +11,10 @@ def getNorth():
 
     seeker = Sensor(driver_name='ht-nxt-compass')
     seeker.mode = 'COMPASS'
-    print(seeker.value(0), file = sys.stderr)
+    #print(seeker.value(0), file = sys.stderr)
     # direction is 0 for no signal, or 1-9 for left-right direction
     direction = seeker.value(0)
+    print(direction,  file=sys.stderr)
+    if direction > 180:
+        return direction - 360  
     return direction
