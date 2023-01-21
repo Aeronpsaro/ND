@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 import sys
-INFINITY = 0
+BEGIN = 0
 THRESHOLD = 25
 def getValleys(measurements):
     valleys = []
     inValley = False
-    valleyBegin = (-90, INFINITY)
+    valleyBegin = (-90, BEGIN)
     for measurement in measurements:
         if measurement[1] > THRESHOLD:
             if inValley: continue
@@ -16,7 +16,7 @@ def getValleys(measurements):
             valleys.append((valleyBegin, measurement))
         valleyBegin = measurement
     if inValley:
-        valleys.append((valleyBegin, (90, INFINITY)))
+        valleys.append((valleyBegin, (90, BEGIN)))
         
     print(measurements, file=sys.stderr)
     print(valleys, file=sys.stderr)
